@@ -51,16 +51,25 @@ public class MainApp {
                     addSandwichMenu(scanner, order);
                     break;
                 case "2":
-                    System.out.println("Drink menu coming soon!");
+                    addDrinkMenu(scanner, order);
                     break;
                 case "3":
-                    System.out.println("Chips menu coming soon!");
+                    addChipsMenu(scanner, order);
                     break;
                 case "4":
                     System.out.println("\n" + order.getSummary());
-                    // ReceiptManager.saveReceipt(order); // ileride
+
+                    System.out.print("Confirm and save receipt? (yes/no): ");
+                    String confirm = scanner.nextLine();
+                    if (confirm.equalsIgnoreCase("yes")) {
+                        ReceiptManager.saveReceipt(order);
+                    } else {
+                        System.out.println("Order not saved.");
+                    }
+
                     ordering = false;
                     break;
+
                 case "0":
                     System.out.println("Order canceled.");
                     ordering = false;
@@ -225,4 +234,80 @@ public class MainApp {
             }
         }
     }
+    public static void addDrinkMenu(Scanner scanner, Order order) {
+        System.out.println("\n== Add a Drink ==");
+
+        String size;
+        while (true) {
+            System.out.print("Choose size (small, medium, large): ");
+            size = scanner.nextLine().toLowerCase();
+            if (size.equals("small") || size.equals("medium") || size.equals("large")) {
+                break;
+            } else {
+                System.out.println("Invalid size. Please enter small, medium, or large.");
+            }
+        }
+
+        List<String> flavors = Arrays.asList("cola", "lemonade", "orange", "water", "root beer");
+
+        System.out.println("Choose a flavor:");
+        for (int i = 0; i < flavors.size(); i++) {
+            System.out.println((i + 1) + ") " + flavors.get(i));
+        }
+
+        String flavor = "";
+        while (true) {
+            System.out.print("Selection: ");
+            String input = scanner.nextLine();
+
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= flavors.size()) {
+                    flavor = flavors.get(choice - 1);
+                    break;
+                } else {
+                    System.out.println("Invalid number. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number.");
+            }
+        }
+
+        Drink drink = new Drink(size, flavor);
+        order.addDrink(drink);
+        System.out.println("Drink added to order!");
+    }
+    public static void addChipsMenu(Scanner scanner, Order order) {
+        System.out.println("\n== Add Chips ==");
+
+        List<String> chipOptions = Arrays.asList("Doritos", "Lays", "Cheetos", "Ruffles", "Pringles");
+
+        System.out.println("Choose a chip type:");
+        for (int i = 0; i < chipOptions.size(); i++) {
+            System.out.println((i + 1) + ") " + chipOptions.get(i));
+        }
+
+        String chipType = "";
+        while (true) {
+            System.out.print("Selection: ");
+            String input = scanner.nextLine();
+
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= chipOptions.size()) {
+                    chipType = chipOptions.get(choice - 1);
+                    break;
+                } else {
+                    System.out.println("Invalid number. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number.");
+            }
+        }
+
+        Chips chips = new Chips(chipType);
+        order.addChips(chips);
+        System.out.println("Chips added to order!");
+    }
+
 }
