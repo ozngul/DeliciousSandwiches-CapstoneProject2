@@ -1,23 +1,27 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.io.File;
 
 public class ReceiptManager {
     public static void saveReceipt(Order order) {
         String folderPath = "receipts";
         File folder = new File(folderPath);
-        if (!folder.exists()) {
-            folder.mkdirs(); // klasör yoksa oluştur
+
+        // Klasör yoksa hata mesajı ver ve çık
+        if (!folder.exists() || !folder.isDirectory()) {
+            System.out.println("Error: 'receipts' folder does not exist. Please create it manually.");
+            return;
         }
 
-        String timestamp = order.getFormattedTimestamp(); // Order sınıfında var
-        String fileName = folderPath + "/" + timestamp + ".txt";
+        String fileName = folderPath + "/" + order.getFormattedTimestamp() + ".txt";
 
-        try (FileWriter writer = new FileWriter(fileName)) {
+        try (
+                FileWriter fw = new FileWriter(fileName);
+                BufferedWriter writer = new BufferedWriter(fw)
+        ) {
             writer.write(order.getSummary());
             System.out.println("Receipt saved to: " + fileName);
         } catch (IOException e) {

@@ -44,7 +44,12 @@ public class Order {
 
     public String getSummary() {
         StringBuilder sb = new StringBuilder();
-        sb.append("===== ORDER SUMMARY =====\n");
+        sb.append("===== DELI-cious Order Receipt =====\n");
+
+        // Tarih ve saat
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        sb.append("Order Time: ").append(orderTime.format(formatter)).append("\n");
+        sb.append("------------------------------------\n");
 
         if (sandwiches.isEmpty() && drinks.isEmpty() && chips.isEmpty()) {
             sb.append("Your order is empty.\n");
@@ -52,7 +57,7 @@ public class Order {
             if (!sandwiches.isEmpty()) {
                 sb.append("\n--- Sandwiches ---\n");
                 for (Sandwich s : sandwiches) {
-                    sb.append(s.toString()).append("\n\n");
+                    sb.append(s.toString()).append("\n");
                 }
             }
 
@@ -70,11 +75,14 @@ public class Order {
                 }
             }
 
-            sb.append("\nTotal: $").append(String.format("%.2f", getTotalPrice())).append("\n");
+            sb.append("\n------------------------------------\n");
+            sb.append(String.format("Total: $%.2f\n", getTotalPrice()));
         }
 
+        sb.append("====================================\n");
         return sb.toString();
     }
+
 
     public String getFormattedTimestamp() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
