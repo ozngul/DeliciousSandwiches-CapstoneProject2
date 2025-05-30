@@ -42,7 +42,8 @@ Choose an option: 1
 1) Add Sandwich
 2) Add Drink
 3) Add Chips
-4) Checkout
+4) Add Cookies
+5) Checkout
 0) Cancel Order
 Choose an option:
 
@@ -77,6 +78,7 @@ src/
     ├── Sandwich.java
     ├── Drink.java
     ├── Chips.java
+    ├── Cookies.java
     ├── MenuItem.java
     ├── Pricable.java
     └── ReceiptManager.java
