@@ -1,9 +1,0 @@
-===== ORDER SUMMARY =====
-
---- Drinks ---
-medium cola drink - $2.50
-
---- Chips ---
-Doritos chips - $1.50
-
-Total: $4.00

@@ -8,6 +8,7 @@ public class Drink extends MenuItem {
     // Constructor: Initializes the drink with a size and flavor.
     // Passes the full name (e.g., "small cola drink") to the parent MenuItem class.
     public Drink(String size, String flavor) {
+
         super(size + " " + flavor + " drink");
         this.size = size;
     }

@@ -9,12 +9,12 @@ public class MainApp {
 
         // Main menu loop
         while (running) {
-            System.out.println("\n== DELI-cious POS System ==");
+            System.out.println("\n== DeliciousSandwich POS System ==");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("Choose an option: ");
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             switch (input) {
                 case "1":
@@ -41,11 +41,12 @@ public class MainApp {
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
-            System.out.println("4) Checkout");
+            System.out.println("4) Add Cookies");
+            System.out.println("5) Checkout");
             System.out.println("0) Cancel Order");
             System.out.print("Choose an option: ");
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             switch (input) {
                 case "1":
@@ -58,9 +59,12 @@ public class MainApp {
                     addChipsMenu(scanner, order);
                     break;
                 case "4":
+                    addCookiesMenu(scanner, order);
+                    break;
+                case "5":
                     System.out.println("\n" + order.getSummary());
                     System.out.print("Confirm and save receipt? (yes/no): ");
-                    String confirm = scanner.nextLine();
+                    String confirm = scanner.nextLine().trim();
                     if (confirm.equalsIgnoreCase("yes")) {
                         ReceiptManager.saveReceipt(order);
                     } else {
@@ -84,7 +88,7 @@ public class MainApp {
         String size;
         while (true) {
             System.out.print("Choose a size (4, 8, 12): ");
-            size = scanner.nextLine();
+            size = scanner.nextLine().trim();
             if (size.equals("4") || size.equals("8") || size.equals("12")) {
                 break;
             } else {
@@ -94,8 +98,8 @@ public class MainApp {
 
         String bread;
         while (true) {
-            System.out.print("Choose bread type (white, wheat, rye, wrap): ");
-            bread = scanner.nextLine().toLowerCase();
+            System.out.print("Choose bread type (White, Wheat, Rye, Wrap): ");
+            bread = scanner.nextLine().toLowerCase().trim();
             if (bread.equals("white") || bread.equals("wheat") || bread.equals("rye") || bread.equals("wrap")) {
                 break;
             } else {
@@ -136,7 +140,7 @@ public class MainApp {
     }
 
     public static void addMeatsToSandwich(Scanner scanner, Sandwich sandwich) {
-        List<String> meats = Arrays.asList("steak", "ham", "salami", "roast beef", "chicken", "bacon");
+        List<String> meats = Arrays.asList("Steak", "Ham", "Salami", "Sucuk", "Chicken", "Turkey");
 
         while (true) {
             System.out.println("\nChoose a meat (type number or 'done'):");
@@ -144,7 +148,7 @@ public class MainApp {
                 System.out.println((i + 1) + ") " + meats.get(i));
             }
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("done")) break;
 
@@ -171,7 +175,7 @@ public class MainApp {
     }
 
     public static void addCheesesToSandwich(Scanner scanner, Sandwich sandwich) {
-        List<String> cheeses = Arrays.asList("american", "provolone", "cheddar", "swiss");
+        List<String> cheeses = Arrays.asList("American", "Provolone", "Cheddar", "Swiss");
 
         while (true) {
             System.out.println("\nChoose a cheese (type number or 'done'):");
@@ -179,7 +183,7 @@ public class MainApp {
                 System.out.println((i + 1) + ") " + cheeses.get(i));
             }
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("done")) break;
 
@@ -206,7 +210,7 @@ public class MainApp {
     }
 
     public static void addToppingsToSandwich(Scanner scanner, Sandwich sandwich) {
-        List<String> toppings = Arrays.asList("lettuce", "peppers", "onions", "tomatoes", "jalapeños", "cucumbers", "pickles", "guacamole", "mushrooms");
+        List<String> toppings = Arrays.asList("lettuce", "peppers", "onions", "tomatoes", "jalapeños", "cucumbers", "pickles", "olives", "mushrooms");
 
         while (true) {
             System.out.println("\nChoose a topping (type number or 'done'):");
@@ -214,7 +218,7 @@ public class MainApp {
                 System.out.println((i + 1) + ") " + toppings.get(i));
             }
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("done")) break;
 
@@ -232,7 +236,7 @@ public class MainApp {
     }
 
     public static void addSaucesToSandwich(Scanner scanner, Sandwich sandwich) {
-        List<String> sauces = Arrays.asList("mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette", "au jus", "sauce");
+        List<String> sauces = Arrays.asList("Mayo", "Mustard", "Ketchup", "Ranch", "Bbq", "Vinaigrette", "Chipotle", "Buffalo");
 
         while (true) {
             System.out.println("\nChoose a sauce (type number or 'done'):");
@@ -240,7 +244,7 @@ public class MainApp {
                 System.out.println((i + 1) + ") " + sauces.get(i));
             }
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("done")) break;
 
@@ -261,8 +265,8 @@ public class MainApp {
         System.out.println("\n== Add a Drink ==");
         String size;
         while (true) {
-            System.out.print("Choose size (small, medium, large): ");
-            size = scanner.nextLine().toLowerCase();
+            System.out.print("Choose size (Small, Medium, Large): ");
+            size = scanner.nextLine().toLowerCase().trim();
             if (size.equals("small") || size.equals("medium") || size.equals("large")) {
                 break;
             } else {
@@ -270,7 +274,7 @@ public class MainApp {
             }
         }
 
-        List<String> flavors = Arrays.asList("cola", "lemonade", "orange", "water", "root beer");
+        List<String> flavors = Arrays.asList("Cola", "Lemonade", "Orange", "Ayran", "Water");
 
         System.out.println("Choose a flavor:");
         for (int i = 0; i < flavors.size(); i++) {
@@ -280,7 +284,7 @@ public class MainApp {
         String flavor = "";
         while (true) {
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             try {
                 int choice = Integer.parseInt(input);
@@ -299,7 +303,8 @@ public class MainApp {
         order.addDrink(drink);
         System.out.println("Drink added to order!");
     }
-
+    // We pass Scanner and Order as parameters so the method works with the current context.
+    //This keeps the code clean and avoids unexpected behavior
     public static void addChipsMenu(Scanner scanner, Order order) {
         System.out.println("\n== Add Chips ==");
 
@@ -313,7 +318,7 @@ public class MainApp {
         String chipType = "";
         while (true) {
             System.out.print("Selection: ");
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             try {
                 int choice = Integer.parseInt(input);
@@ -327,9 +332,42 @@ public class MainApp {
                 System.out.println("Please enter a number.");
             }
         }
-
+//This line creates a new Chips object using the selected chip type (e.g., "Doritos", "Lays").
+//The variable chipType holds the user's choice, and that value is passed to the Chips constructor.
         Chips chips = new Chips(chipType);
         order.addChips(chips);
         System.out.println("Chips added to order!");
+    }
+    public static void addCookiesMenu(Scanner scanner, Order order) {
+        System.out.println("\n== Add Cookies ==");
+
+        List<String> cookieOptions = Arrays.asList("Chocolate Chip", "Oatmeal", "Peanut Butter", "Sugar", "Double Chocolate");
+
+        System.out.println("Choose a cookie type:");
+        for (int i = 0; i < cookieOptions.size(); i++) {
+            System.out.println((i + 1) + ") " + cookieOptions.get(i));
+        }
+
+        String cookieType = "";
+        while (true) {
+            System.out.print("Selection: ");
+            String input = scanner.nextLine().trim();
+
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= cookieOptions.size()) {
+                    cookieType = cookieOptions.get(choice - 1);
+                    break;
+                } else {
+                    System.out.println("Invalid number. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number.");
+            }
+        }
+
+        Cookies cookies = new Cookies(cookieType);
+        order.addCookies(cookies);
+        System.out.println("Cookies added to order!");
     }
 }

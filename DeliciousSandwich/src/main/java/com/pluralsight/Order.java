@@ -10,6 +10,7 @@ public class Order {
     private List<Sandwich> sandwiches = new ArrayList<>();
     private List<Drink> drinks = new ArrayList<>();
     private List<Chips> chips = new ArrayList<>();
+    private List<Cookies> cookies = new ArrayList<>();
 
     // Timestamp of when the order was created
     private LocalDateTime orderTime;
@@ -31,6 +32,9 @@ public class Order {
     public void addChips(Chips chip) {
         chips.add(chip);
     }
+    public void addCookies(Cookies cookie) {
+        cookies.add(cookie);
+    }
 
     // Calculates the total price of all items in the order
     public double getTotalPrice() {
@@ -44,13 +48,16 @@ public class Order {
         for (Chips c : chips) {
             total += c.getPrice();
         }
+        for (Cookies c : cookies) {
+            total += c.getPrice();
+        }
         return total;
     }
 
     // Builds and returns a full summary (receipt) of the order
     public String getSummary() {
         StringBuilder sb = new StringBuilder();
-        sb.append("===== DELI-cious Order Receipt =====\n");
+        sb.append("===== DeliciousSandwich Order Receipt =====\n");
 
         // Formats and adds the order date/time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -77,6 +84,11 @@ public class Order {
             if (!chips.isEmpty()) {
                 sb.append("\n--- Chips ---\n");
                 for (Chips c : chips) {
+                    sb.append(c.toString()).append("\n");
+                }
+            }if (!cookies.isEmpty()) {
+                sb.append("\n--- Cookies ---\n");
+                for (Cookies c : cookies) {
                     sb.append(c.toString()).append("\n");
                 }
             }

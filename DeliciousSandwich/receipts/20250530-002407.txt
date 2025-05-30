@@ -1,0 +1,17 @@
+===== DeliciousSandwich Order Receipt =====
+Order Time: 2025-05-30 00:24:07
+------------------------------------
+
+--- Sandwiches ---
+4" white sandwich [Toasted]
+Meats: [steak, ham, chicken]
+Extra Meats: {chicken=1}
+Cheeses: [american]
+Extra Cheeses: {american=1}
+Toppings: [lettuce, peppers, onions, tomatoes]
+Sauces: [mayo]
+Total: $10.05
+
+------------------------------------
+Total: $10.05
+====================================

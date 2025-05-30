@@ -1,12 +1,13 @@
-===== DELI-cious Order Receipt =====
-Order Time: 2025-05-29 14:33:29
+===== DeliciousSandwich Order Receipt =====
+Order Time: 2025-05-30 05:39:27
 ------------------------------------
 
 --- Chips ---
 Doritos chips - $1.50
-Lays chips - $1.50
-Ruffles chips - $1.50
+
+--- Cookies ---
+Chocolate Chip cookies - $1.00
 
 ------------------------------------
-Total: $4.50
+Total: $2.50
 ====================================
