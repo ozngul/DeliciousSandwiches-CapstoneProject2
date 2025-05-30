@@ -4,18 +4,22 @@ import java.util.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+// The Order class holds all items selected by the customer in one order
 public class Order {
+    // Lists to store sandwiches, drinks, and chips added to the order
     private List<Sandwich> sandwiches = new ArrayList<>();
     private List<Drink> drinks = new ArrayList<>();
     private List<Chips> chips = new ArrayList<>();
+
+    // Timestamp of when the order was created
     private LocalDateTime orderTime;
 
+    // Constructor: sets the order time to the current date and time
     public Order() {
         this.orderTime = LocalDateTime.now();
     }
 
-    // Add methods
+    // Methods to add items to the order
     public void addSandwich(Sandwich sandwich) {
         sandwiches.add(sandwich);
     }
@@ -28,6 +32,7 @@ public class Order {
         chips.add(chip);
     }
 
+    // Calculates the total price of all items in the order
     public double getTotalPrice() {
         double total = 0;
         for (Sandwich s : sandwiches) {
@@ -42,11 +47,12 @@ public class Order {
         return total;
     }
 
+    // Builds and returns a full summary (receipt) of the order
     public String getSummary() {
         StringBuilder sb = new StringBuilder();
         sb.append("===== DELI-cious Order Receipt =====\n");
 
-        // Tarih ve saat
+        // Formats and adds the order date/time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         sb.append("Order Time: ").append(orderTime.format(formatter)).append("\n");
         sb.append("------------------------------------\n");
@@ -83,12 +89,13 @@ public class Order {
         return sb.toString();
     }
 
-
+    // Returns a timestamp formatted for use in filenames, etc.
     public String getFormattedTimestamp() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
         return orderTime.format(formatter);
     }
 
+    // Getters for order time and lists of items
     public LocalDateTime getOrderTime() {
         return orderTime;
     }

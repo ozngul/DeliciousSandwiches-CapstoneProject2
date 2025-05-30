@@ -2,33 +2,39 @@ package com.pluralsight;
 
 import java.util.*;
 
-public class Sandwich {
-    private String size; // "4", "8", or "12"
-    private String breadType; // white, wheat, rye, wrap
-    private boolean toasted;
+// Represents a customizable sandwich item that extends MenuItem
+public class Sandwich extends MenuItem {
+    private String size;          // Sandwich size: "4", "8", or "12" inches
+    private String breadType;     // Type of bread (e.g., white, wheat, rye, wrap)
+    private boolean toasted;      // Whether the sandwich is toasted
 
+    // Meats and extra meat tracking
     private List<String> meats = new ArrayList<>();
     private Map<String, Integer> extraMeatCount = new HashMap<>();
 
+    // Cheeses and extra cheese tracking
     private List<String> cheeses = new ArrayList<>();
     private Map<String, Integer> extraCheeseCount = new HashMap<>();
 
+    // Regular toppings and sauces
     private List<String> regularToppings = new ArrayList<>();
     private List<String> sauces = new ArrayList<>();
 
-    // Constructor
+    // Constructor sets name from parent class and initializes fields
     public Sandwich(String size, String breadType, boolean toasted) {
+        super(size + "\" " + breadType + " sandwich" + (toasted ? " [Toasted]" : ""));
         this.size = size;
         this.breadType = breadType;
         this.toasted = toasted;
     }
 
-    // Add methods
+    // Methods to add ingredients
     public void addMeat(String meat) {
         meats.add(meat);
     }
 
     public void addExtraMeat(String meat) {
+        // Track how many extra portions of each meat
         extraMeatCount.put(meat, extraMeatCount.getOrDefault(meat, 0) + 1);
     }
 
@@ -37,6 +43,7 @@ public class Sandwich {
     }
 
     public void addExtraCheese(String cheese) {
+        // Track how many extra portions of each cheese
         extraCheeseCount.put(cheese, extraCheeseCount.getOrDefault(cheese, 0) + 1);
     }
 
@@ -48,23 +55,19 @@ public class Sandwich {
         sauces.add(sauce);
     }
 
+    // Calculates the total price based on size and ingredients
+    @Override
     public double getPrice() {
         double price = 0;
 
-        // Base sandwich price
+        // Base sandwich price based on size
         switch (size) {
-            case "4":
-                price += 5.50;
-                break;
-            case "8":
-                price += 7.00;
-                break;
-            case "12":
-                price += 8.50;
-                break;
+            case "4": price += 5.50; break;
+            case "8": price += 7.00; break;
+            case "12": price += 8.50; break;
         }
 
-        // Meat pricing
+        // Price of meats + extra meat
         for (String meat : meats) {
             switch (size) {
                 case "4": price += 1.00; break;
@@ -80,7 +83,7 @@ public class Sandwich {
             }
         }
 
-        // Cheese pricing
+        // Price of cheeses + extra cheese
         for (String cheese : cheeses) {
             switch (size) {
                 case "4": price += 0.75; break;
@@ -96,12 +99,14 @@ public class Sandwich {
             }
         }
 
+        // Regular toppings and sauces are free
         return price;
     }
 
+    // Returns a detailed summary of the sandwich
     @Override
     public String toString() {
-        return size + "\" " + breadType + " sandwich" + (toasted ? " [Toasted]" : "") + "\n" +
+        return name + "\n" +
                 "Meats: " + meats + "\n" +
                 "Extra Meats: " + extraMeatCount + "\n" +
                 "Cheeses: " + cheeses + "\n" +
