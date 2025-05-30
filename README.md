@@ -14,6 +14,7 @@ This project was developed as part of a Java capstone at the **Year Up Applicati
   * Choose meats, cheeses (with optional extras), toppings, and sauces
 * Add drinks by selecting size and flavor
 * Add chips from a predefined list
+* Add cookies from a predefined list
 * Automatically calculates total price based on selections
 * Generates a full receipt and saves it as a `.txt` file
 * Built using Object-Oriented Programming principles
